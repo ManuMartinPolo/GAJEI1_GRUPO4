@@ -8,6 +8,7 @@ public class Ejemplo : MonoBehaviour
     void Start()
     {
         Debug.Log("Hola Mundo");
+        Debug.Log("Me llamo Paco");
     }
 
     // Update is called once per frame
