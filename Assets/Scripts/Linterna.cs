@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Linterna : MonoBehaviour
 {
-    bool encendido = true;
+    bool encendido = false;
     static public float bateria = 180f; // 3 mins de bateria. Static y public para poder acceder a la variable bateria desde otro Script
     // En este caso la recogemos en el script de la bateria para que cuando cojas la recarga la bateria se iguale a la regarga.
     [SerializeField] float batMaxima = 300f;
