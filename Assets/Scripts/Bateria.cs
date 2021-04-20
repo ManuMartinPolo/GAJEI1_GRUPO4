@@ -50,6 +50,8 @@ public class Bateria : MonoBehaviour
             bateriaBaja.Play();
             barra1.SetActive(false);
         }
+
+        
     }
 
 
