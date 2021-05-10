@@ -9,11 +9,18 @@ public class Bateria : MonoBehaviour
     [SerializeField] GameObject barra2;
     [SerializeField] GameObject barra3;
     [SerializeField] AudioSource bateriaBaja;
+    Animator anim;
+    private void Start()
+    {
+        
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            anim = other.GetComponent<Animator>();
+            anim.SetTrigger("recarga");
             Linterna.bateria += bateriaRecarga;
             Destroy(gameObject);
         }
