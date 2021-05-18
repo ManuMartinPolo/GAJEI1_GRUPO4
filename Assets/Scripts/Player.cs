@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     float z; // Declaramos la variable arriba para que podamos usarla en el if del sprint.
     [SerializeField] LayerMask esSaltable;
     
+    
 
     void Start()
     {
@@ -56,5 +57,6 @@ public class Player : MonoBehaviour
                                                                          //Sqrt = Raiz Cuadrada
             alturaSalto = 2.5f;
         }
+       
     }
 }

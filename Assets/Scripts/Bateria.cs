@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Bateria : MonoBehaviour
 {
     [SerializeField] float bateriaRecarga = 120f;
@@ -35,6 +36,7 @@ public class Bateria : MonoBehaviour
         else if (Linterna.bateria < 200f)
         {
             bateriaBaja.Play();
+            
             barra3.SetActive(false);
         }
 

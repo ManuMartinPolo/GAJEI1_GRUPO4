@@ -1,10 +1,16 @@
 fileFormatVersion: 2
 guid: bf1a5ad4f9ffb154ca7813fdad11017a
-timeCreated: 1505782333
-licenseType: Store
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - nota: {instanceID: 0}
+  - playerCamera: {instanceID: 0}
+  - Crosshair: {instanceID: 0}
+  - fps_Rigidbody: {instanceID: 0}
+  - head: {instanceID: 0}
+  - jumpSound: {instanceID: 0}
+  - landSound: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

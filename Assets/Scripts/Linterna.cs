@@ -13,7 +13,12 @@ public class Linterna : MonoBehaviour
     public GameObject linterna2;
     [SerializeField] GameObject linternaModelo;
     bool linternaSacada = true; // Para activar o desactivar el modelo.
-   
+    FirstPersonAIO scriptPlayer;
+    Animator animPlayer;
+    private void Start()
+    {
+        animPlayer = scriptPlayer.gameObject.GetComponent<Animator>();
+    }
     void Update()
     {
         Debug.Log(bateria);
@@ -26,14 +31,18 @@ public class Linterna : MonoBehaviour
         {
             if (!encendido && bateria > batMinima && linternaSacada)
             {
+                Debug.Log("Enciendo");
                 linterna1.SetActive(true);
                 linterna2.SetActive(true);
+                
                 encendido = true;
             }
             else if (encendido && linternaSacada)
             {
+                Debug.Log("Apago");
                 linterna1.SetActive(false);
                 linterna2.SetActive(false);
+                
                 encendido = false;
             }
         }
@@ -56,7 +65,7 @@ public class Linterna : MonoBehaviour
             linterna2.SetActive(false);
             encendido = false;
         }
-        // Para que la batéria nunca pase del máximo, si coges una pila que da un minuto más (máximo 300s) y tenías 260s hace que no se pase de 300s.
+        // Para que la bateria nunca pase del máximo, si coges una pila que da un minuto más (máximo 300s) y tenías 260s hace que no se pase de 300s.
         if (bateria >= batMaxima)
         {
             bateria = batMaxima;

@@ -67,7 +67,8 @@ using System.Collections.Generic;
 [RequireComponent(typeof(CapsuleCollider)),RequireComponent(typeof(Rigidbody)),AddComponentMenu("First Person AIO")]
 
 public class FirstPersonAIO : MonoBehaviour {
-
+    
+   
 
     #region Variables
 
@@ -158,6 +159,7 @@ public class FirstPersonAIO : MonoBehaviour {
         public float FOVKickAmount = 2.5f;
         public float changeTime = 0.75f;
         public float fovRef;
+       
         
     }
     public AdvancedSettings advanced = new AdvancedSettings();
@@ -336,9 +338,10 @@ public class FirstPersonAIO : MonoBehaviour {
 
     private void Update(){
 
+      
         #region Look Settings - Update
 
-            if(enableCameraMovement && !controllerPauseState){
+        if (enableCameraMovement && !controllerPauseState){
             float mouseYInput = 0;
             float mouseXInput = 0;
             float camFOV = playerCamera.fieldOfView;
@@ -374,10 +377,11 @@ public class FirstPersonAIO : MonoBehaviour {
             }
 
         if(Input.GetButtonDown("Cancel")){ControllerPause();}
+        
         #endregion
 
         #region Movement Settings - Update
-        
+
         #endregion
 
         #region Headbobbing Settings - Update
