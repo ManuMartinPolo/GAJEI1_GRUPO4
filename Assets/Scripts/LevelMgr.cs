@@ -13,9 +13,10 @@ public class LevelMgr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        public void CargaNivel(string EscenaManu)
-        {
-            SceneManager.LoadScene(EscenaManu);
-        }
+       
+    }
+    public void CargaNivel(string EscenaManu)
+    {
+        SceneManager.LoadScene(EscenaManu);
     }
 }

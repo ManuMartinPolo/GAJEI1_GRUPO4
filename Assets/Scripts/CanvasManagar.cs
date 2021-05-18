@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateMenu : MonoBehaviour
+public class CanvasManagar : MonoBehaviour
 {
-    [SerializeField] GameObject linterna;
+    [SerializeField] GameObject menuOpciones;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +14,10 @@ public class RotateMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(linterna.transform.position, Vector3.up, 20 * Time.deltaTime);
+        
+    }
+    public void EnableOptions()
+    {
+        menuOpciones.SetActive(true);
     }
 }
