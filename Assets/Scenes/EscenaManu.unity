@@ -4573,6 +4573,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8683558887107298020, guid: 2e62f5703e5f8d2488a5e1bc8433be41, type: 3}
+      propertyPath: nota
+      value: 
+      objectReference: {fileID: 1267920592}
+    - target: {fileID: 8683558887107298020, guid: 2e62f5703e5f8d2488a5e1bc8433be41, type: 3}
       propertyPath: esSaltable.m_Bits
       value: 8
       objectReference: {fileID: 0}

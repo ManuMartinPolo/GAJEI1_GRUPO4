@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     Animator anim;
     GameObject camara;
     AudioSource source;
+    [SerializeField] GameObject nota;
     
     
 
@@ -29,6 +30,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         Movimiento();
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            nota.SetActive(!nota.activeSelf);
+        }
+        
     }
     void Movimiento()
     {
