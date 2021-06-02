@@ -9,15 +9,18 @@ public class Linterna : MonoBehaviour
     // En este caso la recogemos en el script de la bateria para que cuando cojas la recarga la bateria se iguale a la regarga.
     [SerializeField] float batMaxima = 300f;
     [SerializeField] float batMinima = 0f;
-    public GameObject linterna1;
-    public GameObject linterna2;
+    [SerializeField] GameObject linterna1;
+    [SerializeField] GameObject linterna2;
     [SerializeField] GameObject linternaModelo;
     bool linternaSacada = true; // Para activar o desactivar el modelo.
     FirstPersonAIO scriptPlayer;
     Animator animPlayer;
+    [SerializeField] GameObject player;
+    MeshRenderer modeloLinterna;
     private void Start()
     {
-        animPlayer = scriptPlayer.gameObject.GetComponent<Animator>();
+        animPlayer = player.GetComponent<Animator>();
+        modeloLinterna = gameObject.GetComponent<MeshRenderer>();
     }
     void Update()
     {
@@ -27,6 +30,12 @@ public class Linterna : MonoBehaviour
             bateria -= 1 * Time.deltaTime;
 
         }
+        else
+        {
+            linterna1.SetActive(false);
+            linterna2.SetActive(false);
+            encendido = false;
+        }
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (!encendido && bateria > batMinima && linternaSacada)
@@ -34,6 +43,7 @@ public class Linterna : MonoBehaviour
                 Debug.Log("Enciendo");
                 linterna1.SetActive(true);
                 linterna2.SetActive(true);
+                animPlayer.SetTrigger("click");
                 
                 encendido = true;
             }
@@ -42,7 +52,8 @@ public class Linterna : MonoBehaviour
                 Debug.Log("Apago");
                 linterna1.SetActive(false);
                 linterna2.SetActive(false);
-                
+                animPlayer.SetTrigger("click");
+
                 encendido = false;
             }
         }
@@ -50,11 +61,13 @@ public class Linterna : MonoBehaviour
         {
             if (!linternaSacada)
             {
-                linternaModelo.SetActive(true);                              
+                linternaSacada = true;
+                modeloLinterna.enabled = true;
             }
-            else if (linternaSacada)
+            else
             {
-                linternaModelo.SetActive(false);
+                linternaSacada = false;
+                modeloLinterna.enabled = false;
                 encendido = false;                
             }
         }

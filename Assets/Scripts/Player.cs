@@ -11,12 +11,18 @@ public class Player : MonoBehaviour
     float alturaSalto = 2.5f;
     float z; // Declaramos la variable arriba para que podamos usarla en el if del sprint.
     [SerializeField] LayerMask esSaltable;
+    Animator anim;
+    GameObject camara;
+    AudioSource source;
     
     
 
     void Start()
     {
-        
+        anim = GetComponent<Animator>(); //Coges el animator habiendole declarado antes
+        controller = GetComponent<CharacterController>();
+        camara = Camera.main.gameObject;     //Forma para coger el componente de la cámara
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
