@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     CharacterController controller;
     float gravedad = -35;
-    float velocidad = 5;
+    float velocidad = 6;
     Vector3 movimientoY;
     float alturaSalto = 2.5f;
     float z; // Declaramos la variable arriba para que podamos usarla en el if del sprint.
@@ -17,7 +17,9 @@ public class Player : MonoBehaviour
     AudioSource source;
     [SerializeField] GameObject nota;
     [SerializeField] Transform manoIzqpos;
-    [SerializeField] Text bateriaTachado,combustibleTachado;    
+    [SerializeField] Text bateriaTachado,combustibleTachado,ruedaTachado,colocadaTachado;
+    [SerializeField] AudioClip [] clips;
+    bool ruedaEncontrada;
 
     void Start()
     {
@@ -33,6 +35,8 @@ public class Player : MonoBehaviour
         Movimiento();
         if (Input.GetKeyDown(KeyCode.I))
         {
+            source.clip = clips[0];
+            source.Play();
             nota.SetActive(!nota.activeSelf);
         }
         if (Input.GetKeyDown(KeyCode.E))
@@ -79,11 +83,13 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            velocidad = 7.5f;
+            velocidad = 9f;
+            anim.SetBool("running", true);
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            velocidad = 5f;
+            velocidad = 6f;
+            anim.SetBool("running", false);
         }
         
         
@@ -91,7 +97,7 @@ public class Player : MonoBehaviour
     }
     void PickOverLap ()
     {
-        Collider[] colls = Physics.OverlapSphere(manoIzqpos.position, 2f, esInteractuable);
+        Collider[] colls = Physics.OverlapSphere(manoIzqpos.position, 3f, esInteractuable);
         if (colls.Length > 0)
         {
             if (colls[0].gameObject.CompareTag("BateriaCoche"))
@@ -103,6 +109,17 @@ public class Player : MonoBehaviour
             {
                 Destroy(colls[0].gameObject);
                 combustibleTachado.gameObject.SetActive(true);
+            }
+            if (colls[0].gameObject.CompareTag("Rueda"))
+            {
+                Destroy(colls[0].gameObject);
+                ruedaTachado.gameObject.SetActive(true);
+                ruedaEncontrada = true;
+            }
+            if (colls[0].gameObject.CompareTag("RuedaActivar") && ruedaEncontrada)
+            {
+                colls[0].gameObject.GetComponent<MeshRenderer>().enabled = true;
+                colocadaTachado.gameObject.SetActive(true);
             }
         }
         
