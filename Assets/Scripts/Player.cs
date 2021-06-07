@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     CharacterController controller;
     float gravedad = -35;
-    int velocidad = 5;
+    float velocidad = 5;
     Vector3 movimientoY;
     float alturaSalto = 2.5f;
     float z; // Declaramos la variable arriba para que podamos usarla en el if del sprint.
-    [SerializeField] LayerMask esSaltable;
+    [SerializeField] LayerMask esSaltable,esInteractuable;
     Animator anim;
     GameObject camara;
     AudioSource source;
     [SerializeField] GameObject nota;
-    
-    
+    [SerializeField] Transform manoIzqpos;
+    [SerializeField] Text bateriaTachado,combustibleTachado;    
 
     void Start()
     {
@@ -33,6 +34,13 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             nota.SetActive(!nota.activeSelf);
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (Physics.OverlapSphere(camara.transform.position + camara.transform.forward, 2f,esInteractuable).Length > 0)
+            {
+                anim.SetTrigger("pick");
+            }
         }
         
     }
@@ -69,6 +77,36 @@ public class Player : MonoBehaviour
                                                                          //Sqrt = Raiz Cuadrada
             alturaSalto = 2.5f;
         }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            velocidad = 7.5f;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            velocidad = 5f;
+        }
+        
+        
        
     }
+    void PickOverLap ()
+    {
+        Collider[] colls = Physics.OverlapSphere(manoIzqpos.position, 2f, esInteractuable);
+        if (colls.Length > 0)
+        {
+            if (colls[0].gameObject.CompareTag("BateriaCoche"))
+            {
+                Destroy(colls[0].gameObject);
+                bateriaTachado.gameObject.SetActive(true);             
+            }
+            if (colls[0].gameObject.CompareTag("Combustible"))
+            {
+                Destroy(colls[0].gameObject);
+                combustibleTachado.gameObject.SetActive(true);
+            }
+        }
+        
+    }
+  
+   
 }

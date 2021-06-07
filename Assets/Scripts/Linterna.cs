@@ -17,10 +17,17 @@ public class Linterna : MonoBehaviour
     Animator animPlayer;
     [SerializeField] GameObject player;
     MeshRenderer modeloLinterna;
+    // [SerializeField] float bateriaRecarga = 120f;
+    [SerializeField] GameObject barra1;
+    [SerializeField] GameObject barra2;
+    [SerializeField] GameObject barra3;
+    AudioSource source;
+    [SerializeField] AudioClip[] clips;
     private void Start()
     {
         animPlayer = player.GetComponent<Animator>();
         modeloLinterna = gameObject.GetComponent<MeshRenderer>();
+        source = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -44,6 +51,8 @@ public class Linterna : MonoBehaviour
                 linterna1.SetActive(true);
                 linterna2.SetActive(true);
                 animPlayer.SetTrigger("click");
+                source.clip = clips[1];
+                source.Play();
                 
                 encendido = true;
             }
@@ -53,6 +62,8 @@ public class Linterna : MonoBehaviour
                 linterna1.SetActive(false);
                 linterna2.SetActive(false);
                 animPlayer.SetTrigger("click");
+                source.clip = clips[1];
+                source.Play();
 
                 encendido = false;
             }
@@ -88,6 +99,42 @@ public class Linterna : MonoBehaviour
         {
             bateria = batMinima;
         }
+
+        CanvasYSonido();
         
+    }
+    void CanvasYSonido()
+    {
+        if (bateria >= 200f) //Barra de bateria 3
+        {
+            barra3.SetActive(true);
+
+        }
+        else if (bateria < 200f)
+        {
+            
+            barra3.SetActive(false);
+        }
+
+        if (bateria >= 100f) //Barra de bateria 2
+        {
+            barra2.SetActive(true);
+        }
+        else if (bateria < 100f)
+        {
+            
+            barra2.SetActive(false);
+        }
+
+        if (bateria > 0f) //Barra de bateria 1
+        {
+            barra1.SetActive(true);
+        }
+        else if (bateria <= 0f)
+        {
+            source.clip = clips[0];
+            source.Play();
+            barra1.SetActive(false);
+        }
     }
 }

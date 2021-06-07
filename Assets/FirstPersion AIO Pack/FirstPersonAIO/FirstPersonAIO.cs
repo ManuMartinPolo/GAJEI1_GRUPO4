@@ -246,6 +246,8 @@ public class FirstPersonAIO : MonoBehaviour {
     #endregion
 
     #endregion
+    bool nota;
+    [SerializeField] GameObject notaGobj;
 
     private void Awake(){
         #region Look Settings - Awake
@@ -377,7 +379,7 @@ public class FirstPersonAIO : MonoBehaviour {
             }
 
         if(Input.GetButtonDown("Cancel")){ControllerPause();}
-        
+
         #endregion
 
         #region Movement Settings - Update
@@ -387,6 +389,10 @@ public class FirstPersonAIO : MonoBehaviour {
         #region Headbobbing Settings - Update
 
         #endregion
+        if (Input.GetKeyDown(KeyCode.I) || !nota)
+        {
+
+        }
 
     }
 
