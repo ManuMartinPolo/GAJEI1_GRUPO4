@@ -8,6 +8,9 @@ TagManager:
   - Combustible
   - Rueda
   - RuedaActivar
+  - Bateria
+  - Shader
+  - PonerBateria
   layers:
   - Default
   - TransparentFX
