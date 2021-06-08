@@ -17,9 +17,13 @@ public class Player : MonoBehaviour
     AudioSource source;
     [SerializeField] GameObject nota;
     [SerializeField] Transform manoIzqpos;
-    [SerializeField] Text bateriaTachado,combustibleTachado,ruedaTachado,colocadaTachado;
+    [SerializeField] Text bateriaTachado,combustibleTachado,ruedaTachado,colocadaTachado, bateriaColocadaTachado;
     [SerializeField] AudioClip [] clips;
-    bool ruedaEncontrada;
+    bool ruedaEncontrada,bateriaEncontrada;
+    [SerializeField] GameObject shader;
+    [SerializeField] float bateriaRecarga = 120f;
+    [SerializeField] Linterna scriptLinterna;
+
 
     void Start()
     {
@@ -27,6 +31,8 @@ public class Player : MonoBehaviour
         controller = GetComponent<CharacterController>();
         camara = Camera.main.gameObject;     //Forma para coger el componente de la cámara
         source = GetComponent<AudioSource>();
+        
+
     }
 
     // Update is called once per frame
@@ -121,9 +127,34 @@ public class Player : MonoBehaviour
                 colls[0].gameObject.GetComponent<MeshRenderer>().enabled = true;
                 colocadaTachado.gameObject.SetActive(true);
             }
+            if (colls[0].gameObject.CompareTag("Bateria"))
+            {               
+                anim.SetTrigger("recarga");
+                Linterna.bateria += bateriaRecarga;
+                Destroy(colls[0].gameObject);
+            }
+            if (colls[0].gameObject.CompareTag("PonerBateria"))
+            {
+                colls[0].gameObject.GetComponent<MeshRenderer>().enabled = true;
+                bateriaColocadaTachado.gameObject.SetActive(true);
+            }
         }
         
     }
-  
-   
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Shader"))
+        {
+            shader.SetActive(true);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Shader"))
+        {
+            shader.SetActive(false);
+        }
+    }
+
+
 }
