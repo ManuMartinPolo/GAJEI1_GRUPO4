@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EscenaManu.unity
     guid: d30444a1a7355e5439408ca168097e96
+  - enabled: 1
+    path: Assets/Scenes/EscenaTele.unity
+    guid: 61582fa574b9c004eb07392b8deb3b5e
   m_configObjects: {}
