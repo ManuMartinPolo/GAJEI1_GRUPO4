@@ -20,9 +20,10 @@ public class Player : MonoBehaviour
     [SerializeField] Text bateriaTachado,combustibleTachado,ruedaTachado,colocadaTachado, bateriaColocadaTachado;
     [SerializeField] AudioClip [] clips;
     bool ruedaEncontrada,bateriaEncontrada;
-    [SerializeField] GameObject shader;
+    [SerializeField] GameObject shader,shaderBateria,shaderRadio;
     [SerializeField] float bateriaRecarga = 120f;
     [SerializeField] Linterna scriptLinterna;
+    [SerializeField] Personajo scriptRadio;
 
 
     void Start()
@@ -138,6 +139,12 @@ public class Player : MonoBehaviour
                 colls[0].gameObject.GetComponent<MeshRenderer>().enabled = true;
                 bateriaColocadaTachado.gameObject.SetActive(true);
             }
+            if (colls[0].gameObject.CompareTag("Radio"))
+            {
+                AudioSource audioRadio = colls[0].gameObject.GetComponent<AudioSource>();
+                audioRadio.clip = scriptRadio.clips[0];
+                audioRadio.Play();               
+            }
         }
         
     }
@@ -145,14 +152,31 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Shader"))
         {
-            shader.SetActive(true);
+            other.transform.parent.GetChild(0).gameObject.SetActive(true);
+
+        }
+        if (other.gameObject.CompareTag("ShaderBateriaCoche"))
+        {
+            shaderBateria.SetActive(true);
+        }
+        if (other.gameObject.CompareTag("ShaderRadio"))
+        {
+            shaderRadio.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Shader"))
         {
-            shader.SetActive(false);
+            other.transform.parent.GetChild(0).gameObject.SetActive(false);
+        }
+        if (other.gameObject.CompareTag("ShaderBateriaCoche"))
+        {
+            shaderBateria.SetActive(false);
+        }
+        if (other.gameObject.CompareTag("ShaderRadio"))
+        {
+            shaderRadio.SetActive(false);
         }
     }
 

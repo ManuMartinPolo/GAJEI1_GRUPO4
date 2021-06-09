@@ -11,6 +11,9 @@ TagManager:
   - Bateria
   - Shader
   - PonerBateria
+  - ShaderBateriaCoche
+  - Radio
+  - ShaderRadio
   layers:
   - Default
   - TransparentFX

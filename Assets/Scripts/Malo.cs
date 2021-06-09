@@ -9,30 +9,42 @@ public class Malo : MonoBehaviour
     GameObject player;
     bool ruta;
     float distanciaDeteccion = 25f;
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         navegador = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (navegador.remainingDistance <=3 && !navegador.pathPending)
+        {
+            navegador.isStopped = true;
+            
+
+        }
         if (navegador.remainingDistance <= distanciaDeteccion && !navegador.pathPending)
         {
             navegador.SetDestination(player.transform.position);
-            navegador.speed = 6f;
+            navegador.isStopped = false;
+            navegador.speed = 6.5f;
             Debug.Log("Te encontré");
         }
         else if (navegador.remainingDistance > distanciaDeteccion && !navegador.pathPending)
         {
+            navegador.isStopped = false;
             navegador.speed = 3.5f;
             StartCoroutine(RutinaDeBusqueda());
+
            
         }
     }
+
     IEnumerator RutinaDeBusqueda()
     {
         if (!ruta)
