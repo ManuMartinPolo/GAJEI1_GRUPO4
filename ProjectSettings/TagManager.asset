@@ -14,6 +14,18 @@ TagManager:
   - ShaderBateriaCoche
   - Radio
   - ShaderRadio
+  - AreaRuedaVacia
+  - Llave
+  - AreaLlave
+  - AreaCombustible
+  - AreaRueda
+  - PonerBateriaArea
+  - AreaHerramientas
+  - Herramientas
+  - Capo
+  - Puerta
+  - AreaCapo
+  - AreaPuerta
   layers:
   - Default
   - TransparentFX
@@ -22,7 +34,7 @@ TagManager:
   - Water
   - UI
   - esInteractuable
-  - 
+  - esGolpeable
   - 
   - 
   - 

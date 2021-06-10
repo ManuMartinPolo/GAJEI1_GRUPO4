@@ -31,7 +31,7 @@ public class Linterna : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(bateria);
+        // Debug.Log(bateria);
         if (encendido)
         {
             bateria -= 1 * Time.deltaTime;

@@ -5,14 +5,14 @@ using UnityEngine;
 public class Personajo : MonoBehaviour
 {
 
-    public AudioSource audiosoun;
+    AudioSource audiosoun;
     public AudioClip[] clips;
     
 
     
     void Start()
     {      
-        audiosoun.gameObject.GetComponent<AudioSource>();
+        audiosoun = audiosoun.gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -22,19 +22,7 @@ public class Personajo : MonoBehaviour
 
 
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        
-        if (other.gameObject.CompareTag("Player"))
-        {
-
-            
-               audiosoun.enabled = true;
-
-            //Bicho Grito
-            //Bicho speed++ o algo de eso
-        }
-    }
+    
 }
     
 
